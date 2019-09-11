@@ -23,7 +23,20 @@ public class ArrayHelper {
         arr[j] = tmp;
     }
 
+    public static void printArray(double[][] arr){
+        System.out.println("[");
+        for (int i = 0; i < arr.length ; ++i){
+            System.out.println(format(arr[i])+",");
+        }
+        System.out.println("]");
+    }
+
     public static String format(int[] arr) {
         return Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(",", "[", "]"));
     }
+
+    public static String format(double[] arr) {
+        return Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(",", "[", "]"));
+    }
+
 }
