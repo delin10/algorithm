@@ -31,6 +31,14 @@ public class ArrayHelper {
         System.out.println("]");
     }
 
+    public static void printArray(int[][] arr){
+        System.out.println("[");
+        for (int i = 0; i < arr.length ; ++i){
+            System.out.println(format(arr[i])+",");
+        }
+        System.out.println("]");
+    }
+
     public static String format(int[] arr) {
         return Arrays.stream(arr).mapToObj(String::valueOf).collect(Collectors.joining(",", "[", "]"));
     }
