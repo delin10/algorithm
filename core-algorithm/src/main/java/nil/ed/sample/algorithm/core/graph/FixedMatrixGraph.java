@@ -106,6 +106,62 @@ public class FixedMatrixGraph implements IGraph{
         return 0;
     }
 
+    @Override
+    public int getInDegree(Object node) {
+        Integer id = mapper.get(node);
+
+        int degree = 0;
+
+        for (int i = 0; i < this.size; ++i){
+            if (Double.isInfinite(graph[id][i]) || i == id){
+                continue;
+            }
+
+            degree++;
+        }
+
+        return  degree;
+    }
+
+    @Override
+    public int getOutDegree(Object node) {
+        Integer id = mapper.get(node);
+
+        int degree = 0;
+
+        for (int i = 0; i < this.size; ++i){
+            if (Double.isInfinite(graph[i][id]) || i == id){
+                continue;
+            }
+
+            degree++;
+        }
+
+        return  degree;
+    }
+
+    @Override
+    public int[][] getDegreeStatistics() {
+                /*
+        0 - 出度
+        1 - 入度
+         */
+        int[][] degrees = new int[size][2];
+
+        for (int i = 0; i < size; ++i){
+            for (int j = 0; j < size; ++j){
+                if (Double.isInfinite(graph[i][j]) || i == j){
+                    continue;
+                }
+
+                degrees[i][0]++;
+                degrees[j][1]++;
+            }
+        }
+
+        return degrees;
+    }
+
     /**
      * 添加结点并且返回编号
      * @param node 需要添加的结点对象
@@ -155,6 +211,11 @@ public class FixedMatrixGraph implements IGraph{
     }
 
     public static void main(String[] args) {
+        testDegreeOperation();
+
+    }
+
+    public static void testShortestPath(){
         FixedMatrixGraph matrixGraph = new FixedMatrixGraph(6, 1);
         matrixGraph.addEdgeWithoutDirection('u',5,'w');
         matrixGraph.addEdgeWithoutDirection('u',2,'v');
@@ -168,5 +229,25 @@ public class FixedMatrixGraph implements IGraph{
         matrixGraph.addEdgeWithoutDirection('y',2,'z');
 
         matrixGraph.getShortestPaths('u');
+    }
+
+    public static void testDegreeOperation(){
+        FixedMatrixGraph matrixGraph = new FixedMatrixGraph(6, 1);
+
+        matrixGraph.addEdgeWithoutDirection("1",1,"2");
+        matrixGraph.addEdgeWithoutDirection("1",1,"3");
+        matrixGraph.addEdgeWithoutDirection("2",1,"6");
+        matrixGraph.addEdgeWithoutDirection("2",1,"5");
+        matrixGraph.addEdgeWithoutDirection("2",1,"3");
+        matrixGraph.addEdgeWithoutDirection("2",1,"4");
+        matrixGraph.addEdgeWithoutDirection("3",1,"4");
+        matrixGraph.addEdgeWithoutDirection("3",1,"5");
+        System.out.println(matrixGraph.mapper);
+        ArrayHelper.printArray(matrixGraph.getDegreeStatistics());
+
+        for (int i = 1; i < 7; ++i){
+            System.out.println(matrixGraph.getOutDegree(i+""));
+            System.out.println(matrixGraph.getInDegree(i+""));
+        }
     }
 }
