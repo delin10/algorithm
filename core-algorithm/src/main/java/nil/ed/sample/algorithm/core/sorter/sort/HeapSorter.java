@@ -2,6 +2,7 @@ package nil.ed.sample.algorithm.core.sorter.sort;
 
 import nil.ed.sample.algorithm.core.sorter.Sorter;
 import nil.ed.sample.algorithm.core.util.ArrayHelper;
+import nil.ed.sample.algorithm.core.util.TreeUtils;
 
 public class HeapSorter implements Sorter {
     @Override
@@ -20,13 +21,13 @@ public class HeapSorter implements Sorter {
     }
 
     public void buildMaxHeap(int[] arr, int start, int end){
-        for (int i = (end + start) / 2 - 1; i >= start; --i){
+        for (int i = TreeUtils.parent(end - 1, start); i >= start; --i){
             keepMaxHeap(arr, i, start, end);
         }
     }
 
     public void keepMaxHeap(int[] arr, int i, int start, int end){
-        int l = left(i, start), r = right(i, start), largest = i;
+        int l = TreeUtils.left(i, start), r = TreeUtils.right(i, start), largest = i;
 
         if (l < end && arr[l] > arr[largest]){
             largest = l;
@@ -42,14 +43,5 @@ public class HeapSorter implements Sorter {
         }
     }
 
-    private int left(int i, int start){
-        /*
-        需要注意
-         */
-        return start + ((i - start + 1) << 1) - 1;
-    }
 
-    private int right(int i, int start){
-        return start + ((i - start + 1) << 1);
-    }
 }
