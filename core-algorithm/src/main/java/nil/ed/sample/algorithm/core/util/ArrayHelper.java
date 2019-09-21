@@ -1,5 +1,6 @@
 package nil.ed.sample.algorithm.core.util;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.stream.Collectors;
 
@@ -21,6 +22,19 @@ public class ArrayHelper {
         int tmp = arr[i];
         arr[i] = arr[j];
         arr[j] = tmp;
+    }
+
+    /**
+     * 交换数组中下标为i、j的元素
+     *
+     * @param arr 目的数组
+     * @param i   元素下标
+     * @param j   元素下标
+     */
+    public static void swap(ArrayList<Integer> arr, int i, int j) {
+        int tmp = arr.get(i);
+        arr.set(i, arr.get(j));
+        arr.set(j, tmp);
     }
 
     public static void printArray(double[][] arr){
