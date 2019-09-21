@@ -1,0 +1,10 @@
+斐波那契堆的Java实现
+
+参考：《算法导论》
+实现内容：
+exactMin
+insert
+delete
+
+难点：
+exactMin的consolidate中根节点的遍历操作
