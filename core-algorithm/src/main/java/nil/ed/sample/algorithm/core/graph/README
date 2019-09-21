@@ -1,0 +1,9 @@
+图
+基本实现
+FixedMatrixGraph--邻接矩阵
+LinkedGraph     --邻接链表
+
+实现
+1、构造图基本抽象
+
+2、求出度、入度
