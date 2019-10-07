@@ -20,12 +20,25 @@ public class HeapSorter implements Sorter {
         sort(arr, 0, arr.length);
     }
 
+    /**
+     * 建堆
+     * @param arr 目的数组
+     * @param start 堆数组起始下标
+     * @param end 堆数组结束下标(exclusive)
+     */
     public void buildMaxHeap(int[] arr, int start, int end){
         for (int i = TreeUtils.parent(end - 1, start); i >= start; --i){
             keepMaxHeap(arr, i, start, end);
         }
     }
 
+    /**
+     * 调整堆
+     * @param arr 目的数组
+     * @param i 调整堆的起始父结点下标
+     * @param start 堆数组起始下标
+     * @param end 堆数组结束下标(exclusive)
+     */
     public void keepMaxHeap(int[] arr, int i, int start, int end){
         int l = TreeUtils.left(i, start), r = TreeUtils.right(i, start), largest = i;
 
@@ -42,6 +55,4 @@ public class HeapSorter implements Sorter {
             keepMaxHeap(arr, largest, start, end);
         }
     }
-
-
 }
