@@ -6,8 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="corealgorithm" />
+        <module name="core-algorithm" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8">
+      <module name="algorithm" target="1.8" />
+      <module name="core-algorithm" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
